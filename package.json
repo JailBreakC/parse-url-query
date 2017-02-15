@@ -1,0 +1,23 @@
+{
+  "name": "parse-url-query",
+  "version": "1.0.0",
+  "description": "an easy url parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JailBreakC/parse-url-query.git"
+  },
+  "keywords": [
+    "url",
+    "query"
+  ],
+  "author": "JailBreak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JailBreakC/parse-url-query/issues"
+  },
+  "homepage": "https://github.com/JailBreakC/parse-url-query#readme"
+}

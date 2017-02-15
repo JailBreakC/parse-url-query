@@ -36,19 +36,28 @@ var UrlQuery = function(url) {
     }
 };
 
+// params: {'key': 'value'}
+// params: 'key', 'value'
 UrlQuery.prototype.push = function(obj) {
 	var that = this;
+    var args = Array.prototype.slice.call(arguments)
 
-    for(key in obj) {
-        if(!obj.hasOwnProperty(key)) {
-            continue;
-        }
-        var key = key,
-            val = obj[key];
-        that._query[key] = val;
+    if(args.length == 2) {
+        that._query[args[0]] = args[1];
+        return this;
     }
-
-	return this;
+    if(typeof obj == 'object') {
+        for(var key in obj) {
+            if(!obj.hasOwnProperty(key)) {
+                continue;
+            }
+            var key = key,
+                val = obj[key];
+            that._query[key] = val;
+        }
+	   return this;
+    }
+    throw new Error('Unexpected params');
 };
 
 UrlQuery.prototype.get = function(key) {
@@ -68,7 +77,7 @@ UrlQuery.prototype.getQuery = function(urlEncode) {
 
 	urlEncode = urlEncode === undefined ? true : urlEncode;
     var result = [];
-    for(query in this._query) {
+    for(var query in this._query) {
     	
     	if(!this._query.hasOwnProperty(query)) {
             continue;
@@ -99,11 +108,21 @@ UrlQuery.prototype.del = function(key) {
 
 };
 
-
 UrlQuery.prototype.getStr = UrlQuery.prototype.toString = UrlQuery.prototype.query = UrlQuery.prototype.getQuery 
 
 UrlQuery.prototype.getAll = UrlQuery.prototype.getObj;
 
 UrlQuery.prototype.url = UrlQuery.prototype.getUrl
 
-module.exports = UrlQuery;
+module.exports = function (url) {
+    if(url) {
+        return new UrlQuery(url);
+    }
+    if(typeof window == 'undefined') {
+        throw new Error('Can\'t not find window.location.href');
+    }
+    if(window && window.location && window.location.href) {
+        return new UrlQuery(window.location.href);
+    }
+    throw new Error('Unexpected Error');
+};
