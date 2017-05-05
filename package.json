@@ -1,6 +1,6 @@
 {
   "name": "parse-url-query",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "an easy url parser",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/JailBreakC/parse-url-query/issues"
   },
-  "homepage": "https://github.com/JailBreakC/parse-url-query#readme"
+  "homepage": "https://github.com/JailBreakC/parse-url-query#readme",
+  "devDependencies": {
+    "should": "^11.2.1"
+  }
 }
