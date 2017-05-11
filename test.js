@@ -29,14 +29,6 @@ describe('urlQuery', function () {
     urlQuery.get('foo').should.equal('oof')
   })
 
-  it('should get a string params value', function() {
-    urlQuery.get('foo').should.equal('oof')
-  })
-
-  it('should get a full url string', function() {
-    urlQuery.getUrl().should.equal('https://www.insta360.com?foo=oof&bar=rab')
-  })
-
   it('should get a full url string', function() {
     urlQuery.getUrl().should.equal('https://www.insta360.com?foo=oof&bar=rab')
   })

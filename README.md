@@ -1,21 +1,23 @@
-# parse-url-query
-a url-query parser
- 
-## url解析类
+# parse-url-query 
 
-### 使用方法
+[![Build Status](https://travis-ci.org/JailBreakC/parse-url-query.svg?branch=master)](https://travis-ci.org/JailBreakC/parse-url-query)
 
-	var urlQuery = new UrlQuery(window.location.href);
+A url-query parser
 
+### Method
 
-	urlQuery.push({page: '{{number}}'}).toString(false) # "?page={{number}}"
+```js
+var urlQuery = new UrlQuery(window.location.href)
 
-	urlQuery.push({page: '{{number}}'}).toString()      # "?page=%7B%7Bnumber%7D%7D"
+urlQuery.push({page: '{{number}}'}).toString(false) /* "?page={{number}}" */
 
-	urlQuery.push({test: 'tt'})
+urlQuery.push({page: '{{number}}'}).toString()      /* "?page=%7B%7Bnumber%7D%7D" */
 
-	urlQuery.getObj()                                   # {page: "1", test: "tt"}
+urlQuery.push({test: 'tt'})
 
-	urlQuery.getUrl();                                  # "http://example.com/?page=%7B%7Bnumber%7D%7D"
+urlQuery.getObj()                                   /* {page: "1", test: "tt"} */
 
-	urlQuery.del('page').getUrl();                      # "http://example.com/?test=tt"
+urlQuery.getUrl()                                   /* "http://example.com/?page=%7B%7Bnumber%7D%7D" */
+
+urlQuery.del('page').getUrl()                       /* "http://example.com/?test=tt" */
+```
