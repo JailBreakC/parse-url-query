@@ -4,7 +4,7 @@
   "description": "an easy url parser",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
