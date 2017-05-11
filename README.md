@@ -7,17 +7,17 @@ A url-query parser
 ### Method
 
 ```js
-var urlQuery = new UrlQuery(window.location.href)
+var urlQuery = new UrlQuery('http://example.com?foo=oof&bar=rab')
 
-urlQuery.push({page: '{{number}}'}).toString(false) /* "?page={{number}}" */
+urlQuery.push({page: '{{number}}'}).toString() /* "?foo=oof&bar=rab&page=%7B%7Bnumber%7D%7D" */
 
-urlQuery.push({page: '{{number}}'}).toString()      /* "?page=%7B%7Bnumber%7D%7D" */
+urlQuery.push({page: '{{number}}'}).toString(false) /* "?foo=oof&bar=rab&page={{number}}" */
 
-urlQuery.push({test: 'tt'})
+urlQuery.push({test: 'value'})                      
 
-urlQuery.getObj()                                   /* {page: "1", test: "tt"} */
+urlQuery.getObj() /* {test: "value", foo: "oof", bar: "rab", page: "{{number}}"} */
 
-urlQuery.getUrl()                                   /* "http://example.com/?page=%7B%7Bnumber%7D%7D" */
+urlQuery.getUrl() /* "http://example.com?test=value&foo=oof&bar=rab&page=%7B%7Bnumber%7D%7D" */
 
-urlQuery.del('page').getUrl()                       /* "http://example.com/?test=tt" */
+urlQuery.del('page').getUrl() /* "http://example.com?test=value&foo=oof&bar=rab" */
 ```
